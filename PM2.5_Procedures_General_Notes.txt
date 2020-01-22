@@ -1,0 +1,48 @@
+This is an outline for the PM2.5 regressions. Everything
+up to the last paragraph is preprocessing. Most operations
+are R scripts.
+
+PREPROCESS
+
+Data sources used:
+EPA (PM2.5 and other)
+Aeronet
+MODIS MAIAC
+RAP
+Campaign data, if applicable
+
+For use in outputs: surface elevation, coastlines, and other
+geography.
+
+Define regions of interest, and short identifier for each:
+Eg "SJV" == "San Joaquin Valley". 
+
+Download data and preprocess.
+Standardize names
+
+Use ESMF software to preprocess coefficients for grid interpolations.
+
+The basic data used in regressions are based on MODIS overpass times
+and ground site locations.
+Ground site and model data is extracted at the closest time, within
+2 hrs, to the overpass,
+
+Spatial data is extracted at the ground site locations and within
+2 hrs of overpass time.
+
+NOTE: the hdf (hdf4) functions are a local package and are not
+publically available. The same applies to the streamline
+calculations which are sometimes done.
+
+Extract data within the regions. Save as compressed binary files,
+per region, for fast reading into R.
+Structure is a 3d array with dimension time, variable, and ground site.
+Data from each source (eg, EPA) is extracted individually; these
+arrays are then merged into one.
+
+REGRESS
+
+Define regression models and run regressions and produce results
+(plots and text). It is usually necessary to edit the scripts
+to deal with special circumstances.
+
